@@ -194,13 +194,18 @@ namespace Serene.Common {
                     if (options.autoPrint)
                         doc.autoPrint();
 
+                    //var output = options.output;
+                    //if (output == 'newwindow' || '_blank')
+                    //    output = 'dataurlnewwindow';
+                    //else if (output == 'window')
+                    //    output = 'datauri';//para chrome esta obsoleto el metodo de mostrar base64 en la url
                     var output = options.output;
                     if (output == 'newwindow' || '_blank')
-                        output = 'dataurlnewwindow';
+                        window.open(doc.output('bloburl'), '_blank');
                     else if (output == 'window')
-                        output = 'datauri';
-
-                    doc.output(output);
+                        window.open(doc.output('bloburl'));
+                    else
+                        doc.output(output);//default
                 }
             }); 
         }
